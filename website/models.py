@@ -55,10 +55,10 @@ class Camera(models.Model):
         return self.name if self.name else ''
 
 
-class Crossing(models.Model):
+class Video(models.Model):
     date            = models.DateTimeField()
     temperature     = models.IntegerField(null=True, blank=True)
-    video           = models.FileField(null=True, blank=True)
+    videofile       = models.FileField(null=True, blank=True)
 
     camera          = models.ForeignKey(Camera, null=True, blank=True, on_delete=models.SET_NULL)
     place           = models.ForeignKey(Place, null=True, blank=True, on_delete=models.SET_NULL)
@@ -67,7 +67,7 @@ class Crossing(models.Model):
                                              through='AnimalToCrossing')
 
     class Meta:
-        verbose_name        = 'Passage'
+        verbose_name        = 'Vidéo'
 
     def __str__(self):
         return f"{self.date.strftime('%d.%m.%Y')} - {self.place.name}"
@@ -75,7 +75,7 @@ class Crossing(models.Model):
 
 class AnimalToCrossing(models.Model):
     animal          = models.ForeignKey(Animal, on_delete=models.CASCADE)
-    crossing        = models.ForeignKey(Crossing, on_delete=models.CASCADE)
+    video           = models.ForeignKey(Video, on_delete=models.CASCADE)
     behaviour       = models.ForeignKey(Behaviour, on_delete=models.CASCADE)
     speed           = models.ForeignKey(Speed, on_delete=models.CASCADE)
 

@@ -30,7 +30,7 @@ class CameraAdmin(admin.ModelAdmin):
     search_fields = ['id','name',]
 
 
-@admin.register(Crossing)
+@admin.register(Video)
 class CrossingAdmin(admin.ModelAdmin):
     list_display  = ['id','date','temperature','camera','place',]
     search_fields = ['id','date','temperature','camera__name','place__name',]
@@ -38,5 +38,5 @@ class CrossingAdmin(admin.ModelAdmin):
 
 @admin.register(AnimalToCrossing)
 class AnimalToCrossingAdmin(admin.ModelAdmin):
-    list_display  = ['id','animal','crossing','behaviour',]
-    search_fields = ['id','animal__name','crossing__name','behaviour__name',]
+    list_display  = ['id','animal','video','behaviour',]
+    search_fields = ['id','animal__name','behaviour__name',]
