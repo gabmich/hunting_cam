@@ -58,7 +58,7 @@ class Camera(models.Model):
 class Video(models.Model):
     date            = models.DateTimeField()
     temperature     = models.IntegerField(null=True, blank=True)
-    videofile       = models.FileField(null=True, blank=True)
+    videofile       = models.FileField(null=True, blank=True, upload_to='videos/')
 
     camera          = models.ForeignKey(Camera, null=True, blank=True, on_delete=models.SET_NULL)
     place           = models.ForeignKey(Place, null=True, blank=True, on_delete=models.SET_NULL)
@@ -77,7 +77,6 @@ class AnimalToCrossing(models.Model):
     animal          = models.ForeignKey(Animal, on_delete=models.CASCADE)
     video           = models.ForeignKey(Video, on_delete=models.CASCADE)
     behaviour       = models.ForeignKey(Behaviour, on_delete=models.CASCADE)
-    speed           = models.ForeignKey(Speed, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name        = "Passage d'animal"

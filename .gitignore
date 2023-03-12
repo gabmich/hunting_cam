@@ -142,3 +142,6 @@ GitHub.sublime-settings
 *.mpeg
 *.mp4
 *.MP4
+
+# scripts
+scripts/
