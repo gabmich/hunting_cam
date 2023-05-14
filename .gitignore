@@ -145,3 +145,6 @@ GitHub.sublime-settings
 
 # scripts
 scripts/
+
+# static files
+static/
