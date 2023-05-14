@@ -56,12 +56,13 @@ class Camera(models.Model):
 
 
 class Video(models.Model):
+    name            = models.CharField(max_length=255, null=True, blank=True)
     date            = models.DateTimeField()
     temperature     = models.IntegerField(null=True, blank=True)
     videofile       = models.FileField(null=True, blank=True, upload_to='videos/')
 
     camera          = models.ForeignKey(Camera, null=True, blank=True, on_delete=models.SET_NULL)
-    place           = models.ForeignKey(Place, null=True, blank=True, on_delete=models.SET_NULL)
+    place           = models.ForeignKey(Place, null=True, blank=True, on_delete=models.SET_NULL, related_name='videos')
 
     animals         = models.ManyToManyField(Animal,
                                              through='AnimalToCrossing')
@@ -70,7 +71,12 @@ class Video(models.Model):
         verbose_name        = 'Vidéo'
 
     def __str__(self):
-        return f"{self.date.strftime('%d.%m.%Y')} - {self.place.name}"
+        return f"{self.date.strftime('%d.%m.%Y')}"
+
+    @property
+    def animal_crossings(self):
+        return [crossing for crossing in self.animals.all()]
+    
 
 
 class AnimalToCrossing(models.Model):

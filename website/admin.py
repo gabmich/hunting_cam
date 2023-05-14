@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.utils.html import format_html
+from django.conf import settings
 from .models import *
 
 
@@ -31,8 +33,17 @@ class CameraAdmin(admin.ModelAdmin):
 
 
 @admin.register(Video)
-class CrossingAdmin(admin.ModelAdmin):
-    list_display  = ['id','date','temperature','camera','place',]
+class VideoAdmin(admin.ModelAdmin):
+    def video_tag(self, obj):
+        return format_html(f"""<video height="200"
+                                      controls>
+                                        <source src="{settings.NAS_URL}/{obj.place.name}/{obj.name}?ssid={settings.NAS_SSID}&openfolder=normal&filename={obj.name}&path=/{obj.place.name}"
+                                        type="video/mp4">
+                                </video>""")
+
+    list_display  = ['id','date','name','video_tag','videofile','animal_crossings','temperature','camera','place',]
+    list_filter   = ['place',]
+    list_per_page = 5
     search_fields = ['id','date','temperature','camera__name','place__name',]
     inlines       = [CrossingsInline,]
 

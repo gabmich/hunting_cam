@@ -1,3 +1,9 @@
 from django.shortcuts import render
+from django.http import HttpResponse
+from .models import Video, Place
 
-# Create your views here.
+
+def home(request):
+	places = Place.objects.all()
+
+	return render(request, 'website/home.html', {'places':places})
