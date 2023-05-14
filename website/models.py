@@ -57,7 +57,7 @@ class Camera(models.Model):
 
 class Video(models.Model):
     name            = models.CharField(max_length=255, null=True, blank=True)
-    date            = models.DateTimeField()
+    date            = models.DateTimeField(null=True, blank=True)
     temperature     = models.IntegerField(null=True, blank=True)
     videofile       = models.FileField(null=True, blank=True, upload_to='videos/')
 
