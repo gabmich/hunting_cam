@@ -87,7 +87,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
-        'NAME': '/home/gabmichelet/Dropbox/Sites/Hunting-cam/db.sqlite3',
+        'NAME': env('SQLITE_DB_PATH'),
     }
 }
 
