@@ -44,7 +44,7 @@ class VideoAdmin(admin.ModelAdmin):
     list_display  = ['id','date','name','video_tag','videofile','animal_crossings','temperature','camera','place',]
     list_filter   = ['place',]
     list_per_page = 5
-    search_fields = ['id','date','temperature','camera__name','place__name',]
+    search_fields = ['id','name','date','temperature','camera__name','place__name',]
     inlines       = [CrossingsInline,]
 
 # @admin.register(AnimalToCrossing)
